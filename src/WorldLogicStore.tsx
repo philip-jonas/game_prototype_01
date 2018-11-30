@@ -4,8 +4,6 @@ function make2DArray(width: number, height: number): number[][] {
 	return Array.from({length: height}, () => Array.from({length: width}, () =>  0))
 }
 
-
-
 export class WorldLogicStore {
 	@observable public tileArray: any[][] = make2DArray(this.generateRandomInteger(10, 20), this.generateRandomInteger(10, 20))
 
