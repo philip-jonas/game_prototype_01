@@ -1,12 +1,11 @@
 import { observable, toJS } from "mobx";
 
-export class TileLogicStore {
+export class WorldStore {
 	@observable public gameWorldGrid = [];
     @observable public worldWidth = 5;
     @observable public worldHeight = 3;
     @observable public roomCount = 0;
     @observable public maxRooms = 12;
-    
 
     public layoutRooms(replace:boolean = false) {
         for (let rowIndex = 0; rowIndex < this.worldHeight; rowIndex++) {
@@ -42,8 +41,6 @@ export class TileLogicStore {
             this.layoutRooms(true);
             return true;
         }
-        console.log("GAME WORLD ---------------");
-        console.table(toJS(this.gameWorldGrid));
         this.checkDoors();
     }
 
@@ -81,9 +78,6 @@ export class TileLogicStore {
             }
         }
         this.gameWorldGrid = toJS(roomsCopy);
-
-        console.log("ROOM EXITS ---------------");
-        console.table(toJS(this.gameWorldGrid));
     }
 }
 

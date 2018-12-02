@@ -1,10 +1,10 @@
-import { TileLogicStore } from "./TileLogicStore";
-import { WorldLogicStore } from "./WorldLogicStore";
+import { RoomStore } from "./RoomStore";
+import { WorldStore } from "./WorldStore";
 
 export function initStores() {
     const stores = {
-        tileLogicStore: new TileLogicStore(),
-        worldLogicStore: new WorldLogicStore()
+        tileLogicStore: new WorldStore(),
+        worldLogicStore: new RoomStore()
     }
 
     return stores;

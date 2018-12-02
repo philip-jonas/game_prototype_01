@@ -1,15 +1,10 @@
 import { observable, toJS } from "mobx";
+import {generateRandomInteger} from "./utils/GenerateRandomRange";
+import {make2DArray} from "./utils/Make2DArray";
 
-function make2DArray(width: number, height: number): number[][] {
-	return Array.from({length: height}, () => Array.from({length: width}, () =>  0))
-}
 
-export class WorldLogicStore {
-	@observable public tileArray: any[][] = make2DArray(this.generateRandomInteger(10, 20), this.generateRandomInteger(10, 20))
-
-	public land = {w:this.tileArray[0].length, h:this.tileArray.length};
-	public roomArea = {w:0, h:0};
-
+export class RoomStore {
+	@observable public tileArray: any[][] = make2DArray(generateRandomInteger(10, 20), generateRandomInteger(10, 20))
     @observable public minWidth: number = 4;
     @observable public maxWidth: number = this.tileArray[0].length - 1;
     @observable public minHeight: number = 4;
@@ -17,18 +12,17 @@ export class WorldLogicStore {
 	@observable public startX: number = 0;
 	@observable public startY: number = 0;
 
+	public land = {w:this.tileArray[0].length, h:this.tileArray.length};
+	public roomArea = {w:0, h:0};
+
 	public async initWorldLogic() {
-		const width = await this.generateRandomInteger(this.minWidth, this.maxWidth - 1);
-		const height = await this.generateRandomInteger(this.minHeight, this.maxHeight - 1);
+		const width = generateRandomInteger(this.minWidth, this.maxWidth - 1);
+		const height = generateRandomInteger(this.minHeight, this.maxHeight - 1);
 		this.roomArea = {w:width, h:height};
 
-		this.startX = await this.generateRandomInteger(1, (this.land.w - 1) - this.roomArea.w);
-		this.startY = await this.generateRandomInteger(1, (this.land.h - 1) - this.roomArea.h);
+		this.startX = generateRandomInteger(1, (this.land.w - 1) - this.roomArea.w);
+		this.startY = generateRandomInteger(1, (this.land.h - 1) - this.roomArea.h);
 		this.buildRoom();
-	}
-    
-    private generateRandomInteger(min, max): number {
-        return Math.floor(min + Math.random()*(max + 1 - min))
 	}
 	
 	private buildRoom() {
@@ -65,9 +59,6 @@ export class WorldLogicStore {
 			}
 			rowIndex++;
 		}
-		
-		console.log("ROOM ---------------");
-		console.table(toJS(this.tileArray));
 	}
 	
 }
