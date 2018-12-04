@@ -1,4 +1,5 @@
 import { WorldStore } from "./Stores/WorldStore";
+import { PlotStore } from "./Stores/PlotStore";
 
 export function initStores() {
     // const stores = {
@@ -7,7 +8,8 @@ export function initStores() {
     // }
 
     const stores = {
-        worldStore: new WorldStore(),
+        plotStore: new PlotStore(),
+        worldStore: new WorldStore()
     }
 
     return stores;

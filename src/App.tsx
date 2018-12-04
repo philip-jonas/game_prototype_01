@@ -10,7 +10,10 @@ class App extends React.Component {
 
   public render() {
     return (
-      <StoreProvider worldStore={stores.worldStore} >
+      <StoreProvider
+        worldStore={stores.worldStore}
+        plotStore={stores.plotStore}
+      >
         <World />
       </StoreProvider>
     );
