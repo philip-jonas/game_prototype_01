@@ -4,5 +4,6 @@ import { WorldStore } from "src/Stores/WorldStore";
 export interface IPlotProps {
     plotStore?: PlotStore;
     worldStore?: WorldStore;
-    counter:number;
+    row:number;
+    col:number;
 }

@@ -7,25 +7,26 @@ import { Plot } from './Plot';
 
 export const World = observer(({}) => 
     (
-        <WorldBorder gridWidth={5} gridHeight={3} />
+        <WorldBorder gridWidth={5} gridHeight={5} />
     )
 );
 
-@inject("worldStore")
+@inject("worldStore", "plotStore")
 @observer
 export class WorldBorder extends React.Component<IWorldProps> {
     public componentDidMount() {
-        const {worldStore, gridWidth, gridHeight} = this.props;
+        const {worldStore, gridWidth, gridHeight, plotStore} = this.props;
         worldStore.setWorldSize(gridWidth, gridHeight);
+        plotStore.initPlots(gridWidth, gridHeight);
     }
 
     public render() {
         const {worldStore, gridWidth, gridHeight} = this.props;
         return <BorderContainer>
             {
-                worldStore.worldGrid.map((row, index) => {
-                    return row.map((col, ind) => {
-                        return <Plot counter={ind} key={ind} />;
+                worldStore.worldGrid.map((row, rowIndex) => {
+                    return row.map((col, colIndex) => {
+                        return <Plot col={colIndex} row={rowIndex} key={`${colIndex}_${rowIndex}`}/>;
                     })
                 })
             }
