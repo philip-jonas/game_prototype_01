@@ -5,8 +5,6 @@ export class WorldStore {
     @observable public worldGridArray: number[][];
     @observable public worldWidth: number = 0;
     @observable public worldHeight: number = 0;
-
-    
     
     @action public setWorldSize = (width: number, height: number) => {
         this.worldWidth = width;
@@ -17,6 +15,4 @@ export class WorldStore {
     @computed get worldGrid() {
         return make2DArray(this.worldWidth, this.worldHeight);
     } 
-
-    
 }

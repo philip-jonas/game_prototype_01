@@ -13,7 +13,7 @@ export class PlotStore {
     @observable public maxRooms = 0;
     @observable public plotsX = 0;
     @observable public plotsY = 0;
-    public plotOffset: number = 4;
+    public plotOffset: number = 2;
 
     public initPlots(plotsX: number = this.plotOffset, plotsY: number = this.plotOffset) {
         this.plotsX = plotsX;
